@@ -6,9 +6,10 @@ WORKDIR /app
 COPY src src
 
 # TEST vs PROD builds
-RUN gcc -o gps_uploader -g -fsanitize=undefined src/gps_uploader.c
+RUN gcc -o gps_uploader -g -fsanitize=undefined -fno-sanitize-recover src/gps_uploader.c
 
 # Some demo example GPS data
+COPY testsuite /testsuite
 COPY gps_data.txt /testsuite/gps_data.txt
 COPY gps_data.txt .
 
